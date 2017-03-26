@@ -1,0 +1,12 @@
+consul_proxy:
+    path: /{url}
+    defaults:
+        _controller: 'consul.controller.proxy:__invoke'
+    requirements:
+        url: .+
+
+consul_ui:
+    path: '/'
+    defaults:
+        _controller:  FrameworkBundle:Template:template
+        template: '@Consul/index.html.twig'

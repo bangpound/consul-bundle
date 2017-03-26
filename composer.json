@@ -1,0 +1,28 @@
+{
+    "name": "bangpound/consul-bundle",
+    "require": {
+        "sensiolabs/consul-php-sdk": "^2.1",
+        "symfony/config": "^3.2",
+        "symfony/dependency-injection": "^3.2",
+        "symfony/http-kernel": "^3.2",
+        "symfony/routing": "^3.2",
+        "symfony/yaml": "^3.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Doherty",
+            "email": "bjd@bangpound.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ConsulBundle\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.x-dev"
+        }
+    }
+}

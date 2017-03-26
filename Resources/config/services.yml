@@ -1,0 +1,63 @@
+parameters:
+    consul.host: http://127.0.0.1:8500
+
+services:
+    consul.service.factory:
+        public: false
+        class: SensioLabs\Consul\ServiceFactory
+        arguments:
+            - []
+            - '@logger'
+            - '@consul.guzzle.client'
+
+    consul.client:
+        public: false
+        class: SensioLabs\Consul\Client
+        arguments:
+            - []
+            - '@logger'
+            - '@consul.guzzle.client'
+
+    consul.service:
+        public: false
+        arguments:
+            - '@consul.client'
+        abstract: true
+
+    consul.agent:
+        parent: consul.service
+        class: SensioLabs\Consul\Services\Agent
+
+    consul.catalog:
+        parent: consul.service
+        class: SensioLabs\Consul\Services\Catalog
+
+    consul.health:
+        parent: consul.service
+        class: SensioLabs\Consul\Services\Health
+
+    consul.kv:
+        parent: consul.service
+        class: SensioLabs\Consul\Services\KV
+
+    consul.session:
+        parent: consul.service
+        class: SensioLabs\Consul\Services\Session
+
+    consul.guzzle.client:
+        public: false
+        class: GuzzleHttp\Client
+        arguments:
+            -
+                base_uri: http://127.0.0.1:8500
+                http_errors: false
+
+    consul.controller.proxy:
+        class: ConsulBundle\Controller\ProxyController
+        arguments: ['@consul.client']
+
+    consul.listener:
+        class: ConsulBundle\EventListener\ConsulListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.view, method: onKernelView }
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
