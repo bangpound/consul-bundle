@@ -44,6 +44,10 @@ services:
         parent: consul.service
         class: SensioLabs\Consul\Services\Session
 
+    consul.event:
+        parent: consul.service
+        class: ConsulBundle\Service\Event
+
     consul.guzzle.client:
         public: false
         class: GuzzleHttp\Client
