@@ -9,6 +9,8 @@ services:
             - []
             - '@logger'
             - '@consul.guzzle.client'
+        tags:
+            - { name: monolog.logger, channel: consul }
 
     consul.client:
         public: false
@@ -17,6 +19,8 @@ services:
             - []
             - '@logger'
             - '@consul.guzzle.client'
+        tags:
+            - { name: monolog.logger, channel: consul }
 
     consul.service:
         public: false
