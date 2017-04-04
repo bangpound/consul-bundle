@@ -13,7 +13,6 @@ services:
             - { name: monolog.logger, channel: consul }
 
     consul.service:
-        public: false
         arguments:
             - '@consul.client'
         abstract: true
