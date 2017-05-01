@@ -2,14 +2,6 @@ parameters:
     consul.host: http://127.0.0.1:8500
 
 services:
-    consul.service.factory:
-        public: false
-        class: SensioLabs\Consul\ServiceFactory
-        arguments:
-            - []
-            - '@logger'
-            - '@consul.guzzle.client'
-
     consul.client:
         public: false
         class: SensioLabs\Consul\Client
@@ -17,9 +9,10 @@ services:
             - []
             - '@logger'
             - '@consul.guzzle.client'
+        tags:
+            - { name: monolog.logger, channel: consul }
 
     consul.service:
-        public: false
         arguments:
             - '@consul.client'
         abstract: true

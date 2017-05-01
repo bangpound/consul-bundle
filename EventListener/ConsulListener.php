@@ -17,7 +17,11 @@ class ConsulListener
             return;
         }
 
-        $response = new Response($controllerResult->getBody(), $controllerResult->getStatusCode(), $controllerResult->getHeaders());
+        $response = new Response(
+            $controllerResult->getBody(),
+            $controllerResult->getStatusCode(),
+            $controllerResult->getHeaders()
+        );
         $response->headers->remove('Transfer-Encoding');
 
         $event->setResponse($response);
