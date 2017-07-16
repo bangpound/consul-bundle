@@ -1,5 +1,7 @@
 {
     "name": "bangpound/consul-bundle",
+    "description": "Consul bundle",
+    "type": "symfony-bundle",
     "require": {
         "sensiolabs/consul-php-sdk": "^2.1",
         "symfony/config": "^3.2",
