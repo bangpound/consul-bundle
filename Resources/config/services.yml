@@ -17,25 +17,25 @@ services:
             - '@consul.client'
         abstract: true
 
-    consul.agent:
+    SensioLabs\Consul\Services\Agent:
         parent: consul.service
-        class: SensioLabs\Consul\Services\Agent
+    SensioLabs\Consul\Services\AgentInterface: '@SensioLabs\Consul\Services\Agent'
 
-    consul.catalog:
+    SensioLabs\Consul\Services\Catalog:
         parent: consul.service
-        class: SensioLabs\Consul\Services\Catalog
+    SensioLabs\Consul\Services\CatalogInterface: '@SensioLabs\Consul\Services\Catalog'
 
-    consul.health:
+    SensioLabs\Consul\Services\Health:
         parent: consul.service
-        class: SensioLabs\Consul\Services\Health
+    SensioLabs\Consul\Services\HealthInterface: '@SensioLabs\Consul\Services\Health'
 
-    consul.kv:
+    SensioLabs\Consul\Services\KV:
         parent: consul.service
-        class: SensioLabs\Consul\Services\KV
+    SensioLabs\Consul\Services\KVInterface: '@SensioLabs\Consul\Services\KV'
 
-    consul.session:
+    SensioLabs\Consul\Services\Session:
         parent: consul.service
-        class: SensioLabs\Consul\Services\Session
+    SensioLabs\Consul\Services\SessionInterface: '@SensioLabs\Consul\Services\Session'
 
     consul.event:
         parent: consul.service
