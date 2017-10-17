@@ -2,43 +2,35 @@ parameters:
     consul.host: http://127.0.0.1:8500
 
 services:
-    consul.client:
+    _defaults:
+        autowire: true
+
+    SensioLabs\Consul\Client:
         public: false
-        class: SensioLabs\Consul\Client
         arguments:
             - []
             - '@logger'
             - '@consul.guzzle.client'
         tags:
             - { name: monolog.logger, channel: consul }
+    SensioLabs\Consul\ClientInterface: '@SensioLabs\Consul\Client'
 
-    consul.service:
-        arguments:
-            - '@consul.client'
-        abstract: true
-
-    SensioLabs\Consul\Services\Agent:
-        parent: consul.service
+    SensioLabs\Consul\Services\Agent: ~
     SensioLabs\Consul\Services\AgentInterface: '@SensioLabs\Consul\Services\Agent'
 
-    SensioLabs\Consul\Services\Catalog:
-        parent: consul.service
+    SensioLabs\Consul\Services\Catalog: ~
     SensioLabs\Consul\Services\CatalogInterface: '@SensioLabs\Consul\Services\Catalog'
 
-    SensioLabs\Consul\Services\Health:
-        parent: consul.service
+    SensioLabs\Consul\Services\Health: ~
     SensioLabs\Consul\Services\HealthInterface: '@SensioLabs\Consul\Services\Health'
 
-    SensioLabs\Consul\Services\KV:
-        parent: consul.service
+    SensioLabs\Consul\Services\KV: ~
     SensioLabs\Consul\Services\KVInterface: '@SensioLabs\Consul\Services\KV'
 
-    SensioLabs\Consul\Services\Session:
-        parent: consul.service
+    SensioLabs\Consul\Services\Session: ~
     SensioLabs\Consul\Services\SessionInterface: '@SensioLabs\Consul\Services\Session'
 
-    ConsulBundle\Service\Event:
-        parent: consul.service
+    ConsulBundle\Service\Event: ~
     ConsulBundle\Service\EventInterface: '@ConsulBundle\Service\Event'
 
     consul.guzzle.client:
@@ -49,12 +41,9 @@ services:
                 base_uri: http://127.0.0.1:8500
                 http_errors: false
 
-    consul.controller.proxy:
-        class: ConsulBundle\Controller\ProxyController
-        arguments: ['@consul.client']
+    ConsulBundle\Controller\ProxyController: ~
 
-    consul.listener:
-        class: ConsulBundle\EventListener\ConsulListener
+    ConsulBundle\EventListener\ConsulListener:
         tags:
             - { name: kernel.event_listener, event: kernel.view, method: onKernelView }
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

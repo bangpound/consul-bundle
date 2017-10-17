@@ -1,7 +1,7 @@
 consul_proxy:
     path: /{url}
     defaults:
-        _controller: 'consul.controller.proxy:__invoke'
+        _controller: 'ConsulBundle\Controller\ProxyController'
     requirements:
         url: .+
 
