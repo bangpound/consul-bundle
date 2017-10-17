@@ -37,9 +37,9 @@ services:
         parent: consul.service
     SensioLabs\Consul\Services\SessionInterface: '@SensioLabs\Consul\Services\Session'
 
-    consul.event:
+    ConsulBundle\Service\Event:
         parent: consul.service
-        class: ConsulBundle\Service\Event
+    ConsulBundle\Service\EventInterface: '@ConsulBundle\Service\Event'
 
     consul.guzzle.client:
         public: false

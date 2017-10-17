@@ -9,7 +9,7 @@ use SensioLabs\Consul\OptionsResolver;
  * Class Event
  * @package ConsulBundle\Service
  */
-class Event
+final class Event implements EventInterface
 {
     /**
      * @var Client
