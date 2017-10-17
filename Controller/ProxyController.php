@@ -2,7 +2,7 @@
 
 namespace ConsulBundle\Controller;
 
-use SensioLabs\Consul\Client;
+use SensioLabs\Consul\ClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ProxyController
 {
     /**
-     * @var Client
+     * @var ClientInterface
      */
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
